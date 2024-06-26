@@ -19,22 +19,22 @@ Architecture + Data + Application
 
 Instagram is a social networking platform where users can —
 
-    1. Upload and share Photos and videos
-    2. Follow other users
-    3. Chat with other people
-    4. Can control the visibility of their content by making it public ( accessible to everyone) or private ( accessible to the people who follow)
-    5. Create stories
-    6. Tag another user/location in the post ( photo/video)
-    7. Watch the feed of other users they follow.
+1. Upload and share Photos and videos
+2. Follow other users
+3. Chat with other people
+4. Can control the visibility of their content by making it public ( accessible to everyone) or private ( accessible to the people who follow)
+5. Create stories
+6. Tag another user/location in the post ( photo/video)
+7. Watch the feed of other users they follow.
 
 ## Capacity Estimation
 
 It's important to consider that read requests will be significantly more frequent than write requests, with a ratio of approximately `100 to 1`.
 
-    - Let's assume there are 500 million users registered on the platform, with 1 million active users per day.
-    - If 5 million images are posted daily, this translates to an average of 57 photos being uploaded per second (5M / (246060)).
-    - If the average photo size is 150 KB, then the daily storage usage is 716 GB (5M * 150KB).
-    - If we assume the service will be active for ten years, the total space required will be approximately 2.6 PB (716GB * 365 * 10)
+- Let's assume there are 500 million users registered on the platform, with 1 million active users per day.
+- If 5 million images are posted daily, this translates to an average of 57 photos being uploaded per second (5M / (246060)).
+- If the average photo size is 150 KB, then the daily storage usage is 716 GB (5M * 150KB).
+- If we assume the service will be active for ten years, the total space required will be approximately 2.6 PB (716GB * 365 * 10)
 
 
 ## Components
@@ -68,18 +68,18 @@ It's important to consider that read requests will be significantly more frequen
 
 Our System is read heavy, so we need a data store that can quickly fetch the uploaded image and render on user application. Couple of things that needs to be kept in mind is 
 
-    1. The data store should be reliable as we do not want user’s uploaded image to get lost. 
-    2. User can upload as many images as they so the data store should be scalable to handle billions of images. 
-    3. Latency should be low when retrieving the photos. We can consider an object storage to store the uploaded images by user something like AWS S3. There are other types of storage as well like file storage and block storage but considering the above factors object storage will be a right fit for our design as it gives low read latency and efficient management of huge number of records.
+1. The data store should be reliable as we do not want user’s uploaded image to get lost. 
+2. User can upload as many images as they so the data store should be scalable to handle billions of images. 
+3. Latency should be low when retrieving the photos. We can consider an object storage to store the uploaded images by user something like AWS S3. There are other types of storage as well like file storage and block storage but considering the above factors object storage will be a right fit for our design as it gives low read latency and efficient management of huge number of records.
 
 #### Data store for storing user data and its uploads
 
 Now we have a data store to store the uploaded image by users. We need a database to store the metadata of user uploads and user data. Things to keep in mind while deciding data store
 
-    1. The database should be highly available. 
-    2. It should have low read latency as our system is ready heavy. 
-    3. It should be scalable enough to handle billions of record.
-    4. It should be reliable and should support sharding and replication. 
+1. The database should be highly available. 
+2. It should have low read latency as our system is ready heavy. 
+3. It should be scalable enough to handle billions of record.
+4. It should be reliable and should support sharding and replication. 
 
 ![System Design Architecture](./images/architecture.png)
 
