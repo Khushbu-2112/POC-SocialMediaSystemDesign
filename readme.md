@@ -603,6 +603,42 @@ update_feed(post_user_id, new_post)
 feed = get_feed(current_user_id)
 ```
 
+High profile consideration
+
+```
+def classify_user(user):
+    # Threshold values
+    followers_threshold = 10000
+    engagement_threshold = 0.1
+    posting_frequency_threshold = 5  # posts per week
+
+    # Calculate engagement rate and posting frequency
+    engagement_rate = (user.total_likes + user.total_comments) / user.total_posts
+    posting_frequency = user.total_posts / user.time_period_in_weeks
+
+    # Determine if user is a celebrity
+    if user.followers_count > followers_threshold:
+        return "celebrity"
+    elif engagement_rate > engagement_threshold:
+        return "celebrity"
+    elif posting_frequency > posting_frequency_threshold:
+        return "celebrity"
+    else:
+        return "regular"
+
+def update_feed(user, content):
+    user_type = classify_user(user)
+    if user_type == "celebrity":
+        # Pull-based approach
+        # Followers will request updates
+        print(f"User {user.id} is a celebrity. Use pull-based approach.")
+    else:
+        # Push-based approach
+        # Push updates to followers
+        print(f"User {user.id} is a regular user. Use push-based approach.")
+
+```
+
 By implementing a hybrid approach, Instagram can efficiently manage the feed generation and delivery process, balancing server load and ensuring timely updates for all users. This approach leverages the strengths of both pull and push mechanisms to optimize performance and user experience.
 
 #### Using AI and ML to Manage Feeds
