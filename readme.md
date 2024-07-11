@@ -490,7 +490,7 @@ A hybrid approach combines the benefits of both push and pull mechanisms. For us
 
 #### Serving the News Feed: Pull vs. Push Approaches
 
-![Pull Mechanism](./images/pull.png)
+![Push Mechanism](./images/push.png)
 
 Pull-Based Approach
 
@@ -531,8 +531,7 @@ def get_user_feed(user_id):
 # Fetch and rank posts on-demand
 feed = get_user_feed(current_user_id)
 ```
-
-![Push Mechanism](./images/push.png)
+![Pull Mechanism](./images/pull.png)
 
 Push-Based Approach
 
