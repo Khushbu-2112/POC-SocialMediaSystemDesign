@@ -131,15 +131,15 @@ User Interacts with Content:
 
 Choosing the right database for a system like Instagram involves considering multiple factors, including scalability, consistency, speed, and the types of data you need to store.
 
-- Core Transactional Data: Use a relational database like PostgreSQL for user accounts, authentication, and follow relationships due to the strong ACID guarantees and support for complex queries.
+- Core Transactional Data: Use a relational database like PostgreSQL for user accounts, authentication, and follow relationships due to the strong [ACID](https://www.geeksforgeeks.org/acid-properties-in-dbms/) guarantees and support for complex queries.
 - Content and Metadata: Use a document store like MongoDB to store posts, comments, and user profiles. The flexibility of document stores aligns well with the varying structures of this data.
 - Caching: Use Redis as a caching layer to speed up access to frequently queried data, such as user sessions, feed data, and user profiles.
 - Analytics and Logging: Use a column-family store like Cassandra to handle large-scale, time-series data for activity logs and analytics.
 - Social Graph: Use a graph database like Neo4j for managing and querying social graphs, such as follow relationships and recommendations.
 
 #### Data Flow and Integration:
-- Data Integration: Use data pipelines and ETL processes to synchronize data between different databases as needed.
-- Microservices Architecture: Design the system using microservices, where each service can use the most appropriate database for its needs, ensuring flexibility and scalability.
+- Data Integration: Use data pipelines and [ETL](https://www.geeksforgeeks.org/etl-process-in-data-warehouse/) processes to synchronize data between different databases as needed.
+- Microservices Architecture: Design the system using [microservices](https://www.geeksforgeeks.org/microservices/), where each service can use the most appropriate database for its needs, ensuring flexibility and scalability.
 - Scaling and Partitioning: Plan for sharding and partitioning strategies to handle horizontal scaling, especially for the document store and column-family store.
 
 Most of our data such as users, posts, photos/videos uploaded by users, and user follows are relational. We also require high durability for our data. Queries like fetching all followers or posts for a specific user can be easily executed in a SQL database. Therefore, SQL is a good choice as our primary database technology. However, we need to consider scalability, as SQL databases do not inherently provide out-of-the-box horizontal scaling.
@@ -490,7 +490,7 @@ A hybrid approach combines the benefits of both push and pull mechanisms. For us
 
 #### Serving the News Feed: Pull vs. Push Approaches
 
-![Push Mechanism](./images/push.png)
+![Pull Mechanism](./images/pull-feed.png)
 
 Pull-Based Approach
 
@@ -531,7 +531,8 @@ def get_user_feed(user_id):
 # Fetch and rank posts on-demand
 feed = get_user_feed(current_user_id)
 ```
-![Pull Mechanism](./images/pull.png)
+
+![Push Mechanism](./images/push-feed.png)
 
 Push-Based Approach
 
@@ -604,7 +605,7 @@ feed = get_feed(current_user_id)
 
 By implementing a hybrid approach, Instagram can efficiently manage the feed generation and delivery process, balancing server load and ensuring timely updates for all users. This approach leverages the strengths of both pull and push mechanisms to optimize performance and user experience.
 
-##### Using AI and ML to Manage Feeds
+#### Using AI and ML to Manage Feeds
 
 Personalized Content Recommendations
 AI and ML algorithms can analyze user behavior, interests, and engagement to personalize content recommendations, ensuring that users see posts that are most relevant to them.
@@ -657,7 +658,7 @@ Optimizing Ad Performance
 
 A/B Testing:
 
-- Instagram conducts A/B testing to compare different ad formats, placements, and content, optimizing for higher engagement and conversions.
+- Instagram conducts [A/B testing](https://www.geeksforgeeks.org/what-is-a-b-testing/) to compare different ad formats, placements, and content, optimizing for higher engagement and conversions.
 - Continuous testing helps refine ad strategies based on user response data.
 
 Real-Time Bidding (RTB):
@@ -669,7 +670,7 @@ Performance Tracking and Analytics
 
 Engagement Metrics:
 
-- Instagram tracks metrics such as click-through rates (CTR), engagement rates, and conversions to measure ad performance.
+- Instagram tracks metrics such as click-through rates [(CTR)](https://www.investopedia.com/terms/c/clickthroughrates.asp), engagement rates, and conversions to measure ad performance.
 - These metrics are fed back into ML models to continuously improve ad targeting and placement strategies.
 
 User Feedback:
